@@ -1,0 +1,28 @@
+syntax = "proto3";
+package comments;
+
+service Comments {
+  rpc ListComments (Empty) returns (CommentList);
+  rpc AddComment (AddCommentRequest) returns (Comment);
+  rpc DeleteComment (DeleteCommentRequest) returns (DeleteCommentResponse);
+}
+
+message Empty {}
+message Comment {
+  int32 id = 1;
+  string content = 2;
+  int32 task_id = 3;
+}
+message CommentList {
+  repeated Comment comments = 1;
+}
+message AddCommentRequest {
+  string content = 1;
+  int32 task_id = 2;
+}
+message DeleteCommentRequest {
+  int32 id = 1;
+}
+message DeleteCommentResponse {
+  bool ok = 1;
+} 
